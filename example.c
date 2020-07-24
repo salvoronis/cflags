@@ -1,7 +1,7 @@
 #include <stdio.h>
 //#include "flags.c"
 
-typedef struct Node {
+struct Node {
 	char *value;
 	struct Node *next;
 } Node;
@@ -10,9 +10,13 @@ struct Node *head = NULL;
 int main(int argc, char * argv[]){
 	int a = 10;
 	setFlagLong_int(&a);
-	printf("%d",a);
+	printf("%d\n",a);
+	push(&head, "test");
 	push(&head,"anime");
 	push(&head,"sheeet");
-	printf("%s",head->value);
-	return 0;	
+	int deleting = deleteNodeAfter(&head);
+	int result = searchNode(head, "test");
+	printf("%d\n",result);
+	printf("first: %s, second: %s\n",head->value,head->next->value);
+	return 0;
 }

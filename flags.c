@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <malloc.h>
 
-//getFlag(type,short,long,)
+#define TRUE 1
+#define FALSE 0
 
 typedef struct Node {
 	char *value;
 	struct Node *next;
 } Node;
-
-//Node *head = NULL;
 
 void push(Node **head, char *data){
 	Node *tmp = (Node*) malloc(sizeof(Node));
@@ -16,6 +15,27 @@ void push(Node **head, char *data){
 	tmp->next = (*head);
 	(*head) = tmp;
 }
+
+int searchNode(Node *from, char *data){
+	while ((from != NULL)){
+		if(from->value == data)
+			return TRUE;
+		from = from->next;
+	}
+	return FALSE;
+}
+
+int deleteNodeAfter(Node **prevNode){
+	Node *tmp = (*prevNode)->next;
+	if ((*prevNode)->next->next != NULL){
+		(*prevNode)->next = (*prevNode)->next->next;
+		free(tmp);
+		return 1;
+	}
+	return 0;
+}
+//TODO getByValueNode function
+//end list part
 
 void initFlag(char *argv[]){	
 }
