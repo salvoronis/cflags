@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -13,7 +14,6 @@ typedef struct Node {
 
 void push(Node **head, char *data){
 	Node *tmp = (Node*) malloc(sizeof(Node));
-	//tmp->value = data;
 	char *prt = strtok(data, "=");
 	tmp->name = prt;
 	prt = strtok(NULL,"=");
@@ -24,8 +24,9 @@ void push(Node **head, char *data){
 
 int searchNode(Node *from, char *data){
 	while ((from != NULL)){
-		if(from->value == data)
+		if(strcmp(data,from->name) == 0){
 			return TRUE;
+		}
 		from = from->next;
 	}
 	return FALSE;
@@ -43,7 +44,7 @@ int deleteNodeAfter(Node **prevNode){
 
 Node getByNameNode(Node *start, char *value){
 	while (start != NULL) {
-		if (start->value == value){
+		if (strcmp(value, start->name) == 0){
 			return *start;
 		}
 		start = start->next;
@@ -56,12 +57,16 @@ Node *flagList = NULL;
 void initFlag(int argc, char *argv[]){
 	for(int i = 1; i<argc; i++){
 		push(&flagList,argv[i]);
-		//printf(flagList->value);
 	}
 }
 
-void getFlagLong_int(int *a){
-	*a = 3;
+void getFlagLong_int(int *a, char *flag){
+	int isExist = searchNode(flagList, flag);
+	if (isExist != 1){
+		return;
+	}
+	Node result = getByNameNode(flagList, flag);
+	*a = atoi(result.value);
 }
 
 void getFlagLong_float(float *a){

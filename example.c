@@ -9,9 +9,9 @@ struct Node *head = NULL;
 int main(int argc, char * argv[]){
 	initFlag(argc,argv);
 	int a = 10;
-	getFlagLong_int(&a);
-	//printf("%d\n",a);
-	push(&head, "test");
+	getFlagLong_int(&a,"anime");
+	printf("%d\n",a);
+	/*push(&head, "test");
 	push(&head,"anime");
 	push(&head,"sheeet");
 	int deleting = deleteNodeAfter(&head);
@@ -19,7 +19,7 @@ int main(int argc, char * argv[]){
 		return -1;
 	}
 	int result = searchNode(head, "test");
-	//printf("%d\n",result);
+	printf("%d\n",result);*/
 	//printf("first: %s, second: %s\n",head->value,head->next->value);
 	return 0;
 }
