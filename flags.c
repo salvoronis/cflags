@@ -60,7 +60,7 @@ void initFlag(int argc, char *argv[]){
 	}
 }
 
-void getFlagLong_int(int *a, char *flag){
+void flag_int(int *a, char *flag){
 	int isExist = searchNode(flagList, flag);
 	if (isExist != 1){
 		return;
@@ -69,12 +69,31 @@ void getFlagLong_int(int *a, char *flag){
 	*a = atoi(result.value);
 }
 
-void getFlagLong_float(float *a){
-	*a = 3.0;
+void flag_float(float *a, char *flag){
+	int isExist = searchNode(flagList, flag);
+	if (isExist != 1){
+		return;
+	}
+	Node result = getByNameNode(flagList, flag);
+	*a = atof(result.value);
+}
+
+void flag_bool(int *a, char *flag){
+	*a = searchNode(flagList, flag);
+}
+
+void flag_string(char **a, char *flag){
+	int isExist = searchNode(flagList, flag);
+	if (isExist != 1){
+		return;
+	}
+	Node result = getByNameNode(flagList, flag);
+	*a = result.value;
 }
 
 #define setFlagLong(X)			\
 	_Generic((X),			\
-	int: setFlagLong_int,		\
-	float: setFlagLong_float	\
+	int: flag_int,			\
+	float: flag_float,		\
+	char*: flag_string		\
 )(X)

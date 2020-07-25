@@ -8,9 +8,9 @@ struct Node {
 struct Node *head = NULL;
 int main(int argc, char * argv[]){
 	initFlag(argc,argv);
-	int a = 10;
-	getFlagLong_int(&a,"anime");
-	printf("%d\n",a);
+	char* a;
+	flag_string(&a,"anime");
+	printf("%s\n",a);
 	/*push(&head, "test");
 	push(&head,"anime");
 	push(&head,"sheeet");
