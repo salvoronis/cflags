@@ -1,5 +1,4 @@
 #include <stdio.h>
-//#include "flags.c"
 
 struct Node {
 	char *value;
@@ -8,15 +7,19 @@ struct Node {
 
 struct Node *head = NULL;
 int main(int argc, char * argv[]){
+	initFlag(argc,argv);
 	int a = 10;
-	setFlagLong_int(&a);
-	printf("%d\n",a);
+	getFlagLong_int(&a);
+	//printf("%d\n",a);
 	push(&head, "test");
 	push(&head,"anime");
 	push(&head,"sheeet");
 	int deleting = deleteNodeAfter(&head);
+	if (deleting != 1){
+		return -1;
+	}
 	int result = searchNode(head, "test");
-	printf("%d\n",result);
-	printf("first: %s, second: %s\n",head->value,head->next->value);
+	//printf("%d\n",result);
+	//printf("first: %s, second: %s\n",head->value,head->next->value);
 	return 0;
 }
