@@ -52,10 +52,26 @@ Node getByNameNode(Node *start, char *value){
 	return *start;
 }
 //end list part
+
+void trim(char *string){
+	int i=0,j;
+	while (string[i]=='-'){
+		i++;
+	}
+	if (i>0) {
+		for(j=0; j<strlen(string); j++){
+			string[j]=string[j+i];
+		}
+		string[j]='\0';
+	}
+}
+
+//end trim part
 Node *flagList = NULL;
 
 void initFlag(int argc, char *argv[]){
 	for(int i = 1; i<argc; i++){
+		trim(argv[i]);
 		push(&flagList,argv[i]);
 	}
 }
@@ -91,9 +107,4 @@ void flag_string(char **a, char *flag){
 	*a = result.value;
 }
 
-#define setFlagLong(X)			\
-	_Generic((X),			\
-	int: flag_int,			\
-	float: flag_float,		\
-	char*: flag_string		\
-)(X)
+//TODO spacecheck
