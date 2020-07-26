@@ -43,7 +43,8 @@ And "a" won't change
 ---
 # License
 
-None
+General Public License
+![GPL](https://ru.wikipedia.org/wiki/GNU_Lesser_General_Public_License#/media/%D0%A4%D0%B0%D0%B9%D0%BB:LGPLv3_Logo.svg "wikipedia")
 
 
 **btw I use arch linux**
